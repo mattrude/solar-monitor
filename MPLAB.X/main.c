@@ -63,8 +63,8 @@ int main() {
                     SLEEP();                    // Go to sleep
                 }
             } else {
-                // Wait for an additional 4 minutes
-                for (uint16_t i=0;i<480;i++){
+                // Wait for an additional 9 minutes
+                for (uint16_t i=0;i<1080;i++){
                     CLRWDT();                   // Feed the Dog
                     __delay_ms(500);            // Wait half a second
                 }
