@@ -20,12 +20,12 @@ A simple solution to prevent a solar powered LoRaWAN gateway from going into bro
 ## Schematic
 
 **Schematic**
-![Schematic Rev-A](Schematic_RevA.PNG)
+![Schematic Rev-A](Documentation/Schematic_RevA.PNG)
 
 ## Board
 
 **The Top of the Board**
-![Board Top Rev-A](Board_Top_RevA.PNG)
+![Board Top Rev-A](Documentation/Board_Top_RevB.PNG)
 
 **The Bottom of the Board**
-![Board Bottom Rev-A](Board_Bottom_RevA.PNG)
+![Board Bottom Rev-A](Documentation/Board_Bottom_RevB.PNG)
