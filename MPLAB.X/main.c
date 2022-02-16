@@ -91,7 +91,7 @@ void interrupts() {
     if (INTF==1) {
         LATAbits.LATA0 = 0; // Disable Output
         cntHigh++;
-        cntLow = (cntLow + 2);
+        cntLow = (cntLow + 5);
         INTF = 0;           // Clear the external interrupt flag
     }
 }
