@@ -27,8 +27,8 @@
 #include <stdlib.h>
 
 uint8_t poweredOn = 0;
-uint16_t numOfResets = 5;
-uint16_t cntLastResets = 0;
+uint16_t cntLow = 5;
+uint16_t cntHigh = 0;
 
 void __interrupt() interrupts();
 
@@ -53,16 +53,18 @@ int main() {
     CLRWDT();               // Feed the dog once before we start
     while(1) {
         if (PORTAbits.RA2 == 1) {
-            if (cntLastResets >= 2) {
+            if (cntHigh >= 2) {
+                // Max out cntHigh at 50
+                if (cntHigh >= 50) { cntHigh = 50; }
                 // Wait for an additional 9 minutes
                 for (uint16_t i=0;i<1080;i++){
                     CLRWDT();               // Feed the Dog
                     __delay_ms(500);        // Wait half a second
                 }
-                cntLastResets--;
+                cntHigh--;
             } else {
-                if (numOfResets >= 1) {
-                    numOfResets--;
+                if (cntLow >= 1) {
+                    cntLow--;
                 } else {
                     LATAbits.LATA0 = 1;     // Enable Output
                     SLEEP();                // Go to sleep
@@ -88,8 +90,8 @@ void interrupts() {
     // External Interrupt detected
     if (INTF==1) {
         LATAbits.LATA0 = 0; // Disable Output
-        cntLastResets++;
-        numOfResets = (numOfResets + 2);
+        cntHigh++;
+        cntLow = (cntLow + 2);
         INTF = 0;           // Clear the external interrupt flag
     }
 }
