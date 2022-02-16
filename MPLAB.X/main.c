@@ -53,20 +53,20 @@ int main() {
     CLRWDT();               // Feed the dog once before we start
     while(1) {
         if (PORTAbits.RA2 == 1) {
-            if (cntLastResets < 2) {
-                if (numOfResets >= 1) {
-                    numOfResets--;
-                } else {
-                    LATAbits.LATA0 = 1;     // Enable Output
-                    SLEEP();                // Go to sleep
-                }
-            } else {
+            if (cntLastResets >= 2) {
                 // Wait for an additional 9 minutes
                 for (uint16_t i=0;i<1080;i++){
                     CLRWDT();               // Feed the Dog
                     __delay_ms(500);        // Wait half a second
                 }
                 cntLastResets--;
+            } else {
+                if (numOfResets >= 1) {
+                    numOfResets--;
+                } else {
+                    LATAbits.LATA0 = 1;     // Enable Output
+                    SLEEP();                // Go to sleep
+                }
             }
         } else {
             LATAbits.LATA0 = 0;             // Disable Output
