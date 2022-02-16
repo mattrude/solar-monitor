@@ -1,7 +1,9 @@
 /* 
- * File:   main.c
- * Author: Owner
- *
+ * File: main.c
+ * Author: Matt Rude <matt@mattrude.com>
+ * URL https://github.com/mattrude/solar-monitor
+ * Hardware: PIC16F15214
+ * License: MIT License
  * Created on February 13, 2022, 1:50 PM
  */
 
