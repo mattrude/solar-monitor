@@ -4,6 +4,11 @@
 
   (paper "A5")
 
+  (title_block
+    (date "2022-02-15")
+    (rev "${REVISION}")
+  )
+
   (lib_symbols
     (symbol "Conn_01x02_Male_1" (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
       (property "Reference" "J1" (id 0) (at 0.635 -3.81 0)
