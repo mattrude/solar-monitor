@@ -1,8 +1,20 @@
 # Solar Monitor
 
-## Summary
-
 A simple solution to prevent a solar powered LoRaWAN gateway from going into brownout when the batteries drop in voltages.
+
+## The Backstory
+
+I have a solar powered [Raspberry Pi](https://www.raspberrypi.org/) + [RAK2245](https://store.rakwireless.com/products/rak2245-pi-hat) + [RAK2013](https://store.rakwireless.com/products/rak2013-cellular-pi-hat) that has a problem where when it gets cold out, the batteries don't have the Amps to power the gateway when the sun comes up.  This puts the gateway into a brownout state where the cellular module disconnects and will not reconnect until the system is rebooted.
+
+I have learned that a few minutes delay will resolve this issue, allow the batteries to charge and the system to boot correctly.  This project is an attempt to automate this task.
+
+## Theory of Operation
+
+## Software
+
+* [KiCad EDA](https://www.kicad.org/) - Version 6.0.2 - The Schematic & Board softare
+* [MPLAB X IDE](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide) - Version 6.0.0 - Software used to build the C code
+  * [XC8](https://www.microchip.com/en-us/tools-resources/develop/mplab-xc-compilers) - Version 2.32 - The C compiler (A part of MPLAB X IDE)
 
 ## Hardware (BOM)
 
