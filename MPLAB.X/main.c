@@ -58,25 +58,25 @@ int main() {
                 if (numOfResets >= 1) {
                     numOfResets--;
                 } else {
-                    LATAbits.LATA0 = 1;         // Enable Output
-                    SLEEP();                    // Go to sleep
+                    LATAbits.LATA0 = 1;     // Enable Output
+                    SLEEP();                // Go to sleep
                 }
             } else {
                 // Wait for an additional 9 minutes
                 for (uint16_t i=0;i<1080;i++){
-                    CLRWDT();                   // Feed the Dog
-                    __delay_ms(500);            // Wait half a second
+                    CLRWDT();               // Feed the Dog
+                    __delay_ms(500);        // Wait half a second
                 }
                 cntLastResets--;
             }
         } else {
-            LATAbits.LATA0 = 0;                 // Disable Output
+            LATAbits.LATA0 = 0;             // Disable Output
         }
         
         // Wait for 1 minute
         for (uint8_t i=0;i<120;i++){
-            CLRWDT();                           // Feed the Dog
-            __delay_ms(500);                    // Wait half a second
+            CLRWDT();                       // Feed the Dog
+            __delay_ms(500);                // Wait half a second
         }
     }
     return (EXIT_SUCCESS);
