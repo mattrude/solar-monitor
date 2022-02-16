@@ -28,7 +28,7 @@
 #include <stdlib.h>
 
 uint8_t poweredOn = 0;
-uint16_t numOfResets = 1;
+uint16_t numOfResets = 5;
 uint16_t cntLastResets = 0;
 
 void __interrupt() interrupts();
