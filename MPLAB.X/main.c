@@ -55,7 +55,7 @@ int main() {
     CLRWDT();               // Feed the dog once before we start
     while(1) {
         if (PORTAbits.RA2 == 1) {
-            if (cntLastResets < 5) {
+            if (cntLastResets < 2) {
                 if (numOfResets >= 1) {
                     numOfResets--;
                 } else {
