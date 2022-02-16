@@ -50,7 +50,6 @@ int main() {
     // Set Default Values
     LATAbits.LATA0 = 0;     // Start with RA0 LOW
     
-    
     CLRWDT();               // Feed the dog once before we start
     while(1) {
         if (PORTAbits.RA2 == 1) {
