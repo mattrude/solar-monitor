@@ -31,8 +31,7 @@ I have learned that a few minutes delay will resolve this issue, allow the batte
 
 ## Schematic
 
-**Schematic**
-![Schematic Rev-A](Documentation/Schematic_RevA.PNG)
+![Schematic Rev-B](Documentation/Schematic_RevB.PNG)
 
 ## Board
 
