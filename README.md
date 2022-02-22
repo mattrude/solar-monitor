@@ -10,6 +10,10 @@ I have learned that a few minutes delay will resolve this issue, allow the batte
 
 ## Theory of Operation
 
+When the voltage drops below about 3 volts, the `MCP102-300E/TO` will sit it's pin 2 `LOW`, once the voltages has stablized above 3 volts for more then 120 ms, pin 2 goes `HIGH`.
+
+The `PIC16F15214-I/P` microcontroller reads the input from pin 2 on the `MCP102-300E/TO` (via pin 2 [INT] on the microcontroller) and set pin 0 `LOW`.  When microcontroller pin 0 is `LOW`, the `PN2222A` disables the power to the output pins of the board.
+
 ## Software
 
 * [KiCad EDA](https://www.kicad.org/) - Version 6.0.2 - The Schematic & Board softare
