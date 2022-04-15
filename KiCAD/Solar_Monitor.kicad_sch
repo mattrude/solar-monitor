@@ -6,7 +6,7 @@
 
   (title_block
     (date "2022-02-15")
-    (rev "${REVISION}")
+    (rev "B")
   )
 
   (lib_symbols
