@@ -22,7 +22,7 @@
 // CONFIG2
 #pragma config MCLRE = EXTMCLR  // Master Clear Enable bit (If LVP = 0, MCLR pin is MCLR; If LVP = 1, RA3 pin function is MCLR)
 #pragma config PWRTS = PWRT_OFF // Power-up Timer Selection bits (PWRT is disabled)
-#pragma config WDTE = ON        // WDT Operating Mode bits (WDT enabled regardless of Sleep; SEN bit is ignored)
+#pragma config WDTE = OFF       // WDT Operating Mode bits (WDT enabled regardless of Sleep; SEN bit is ignored)
 #pragma config BOREN = NSLEEP   // Brown-out Reset Enable bits (Brown-out Reset enabled while running, disabled in Sleep; SBOREN is ignored)
 #pragma config BORV = LO        // Brown-out Reset Voltage Selection bit (Brown-out Reset Voltage (VBOR) set to 1.9V)
 #pragma config PPS1WAY = ON     // PPSLOCKED One-Way Set Enable bit (The PPSLOCKED bit can be set once after an unlocking sequence is executed; once PPSLOCKED is set, all future changes to PPS registers are prevented)
@@ -93,7 +93,6 @@ int main() {
             __delay_ms(500);            // Wait half a second
         }
     }
-    return (EXIT_SUCCESS);
 }
 
 
@@ -102,8 +101,9 @@ void interrupts() {
     
     // External Interrupt detected
     if (INTF==1) {
-        LATAbits.LATA0 = 0; // Disable Output
+        CLRWDT();                   // Feed the Dog
+        LATAbits.LATA0 = 0;         // Disable Output
         cntLow = (cntLow + 5);
-        INTF = 0;           // Clear the external interrupt flag
+        INTF = 0;                   // Clear the external interrupt flag
     }
 }
