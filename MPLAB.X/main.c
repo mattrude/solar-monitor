@@ -6,7 +6,7 @@
  * Created on February 13, 2022, 1:50 PM
  */
 
-#define _XTAL_FREQ 1000000  // Set CPU to 1Mhz
+#define _XTAL_FREQ 1000000      // Set CPU to 1Mhz
 
 
 // PIC16F15214 Configuration Bit Settings
@@ -51,7 +51,7 @@
 #include <stdlib.h>
 
 uint8_t poweredOn = 0;
-uint16_t cntLow = 5;
+uint16_t cntLow = 1;
 
 void __interrupt() interrupts();
 
@@ -76,6 +76,7 @@ int main() {
     CLRWDT();               // Feed the dog once before we start
     while(1) {
         if (PORTAbits.RA2 == 1) {
+            if (cntLow > 30) { cntLow = 30; }
             if (cntLow >= 1) {
                 cntLow--;
             } else {
