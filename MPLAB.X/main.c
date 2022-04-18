@@ -22,7 +22,7 @@
 // CONFIG2
 #pragma config MCLRE = EXTMCLR  // Master Clear Enable bit (If LVP = 0, MCLR pin is MCLR; If LVP = 1, RA3 pin function is MCLR)
 #pragma config PWRTS = PWRT_OFF // Power-up Timer Selection bits (PWRT is disabled)
-#pragma config WDTE = OFF       // WDT Operating Mode bits (WDT enabled regardless of Sleep; SEN bit is ignored)
+#pragma config WDTE = ON        // WDT Operating Mode bits (WDT enabled regardless of Sleep; SEN bit is ignored)
 #pragma config BOREN = NSLEEP   // Brown-out Reset Enable bits (Brown-out Reset enabled while running, disabled in Sleep; SBOREN is ignored)
 #pragma config BORV = LO        // Brown-out Reset Voltage Selection bit (Brown-out Reset Voltage (VBOR) set to 1.9V)
 #pragma config PPS1WAY = ON     // PPSLOCKED One-Way Set Enable bit (The PPSLOCKED bit can be set once after an unlocking sequence is executed; once PPSLOCKED is set, all future changes to PPS registers are prevented)
@@ -88,9 +88,16 @@ int main() {
         }
         
         // Wait for 1 minute
-        for (uint8_t i=0;i<120;i++){
+        for (uint8_t i=0;i<60;i++){
             CLRWDT();                   // Feed the Dog
-            __delay_ms(500);            // Wait half a second
+            __delay_ms(250);            // Wait a quarter a second
+            CLRWDT();                   // Feed the Dog
+            __delay_ms(250);            // Wait a quarter a second
+            CLRWDT();                   // Feed the Dog
+            __delay_ms(250);            // Wait a quarter a second
+            CLRWDT();                   // Feed the Dog
+            __delay_ms(250);            // Wait a quarter a second
+            CLRWDT();                   // Feed the Dog
         }
     }
 }
