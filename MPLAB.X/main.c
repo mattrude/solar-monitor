@@ -52,7 +52,6 @@
 
 uint8_t poweredOn = 0;
 uint16_t cntLow = 5;
-uint16_t cntHigh = 0;
 
 void __interrupt() interrupts();
 
@@ -68,7 +67,7 @@ int main() {
     INTPPS = 0b00000010;    // Set INT pin to RA2
     INTF   = 0;             // Clear the external interrupt flag
     INTCON = 0b10010000;    // Enable GIE (Global Interrupt)
-                            //  & PEIE?(Peripheral Interrupt)
+                            //  & PEIE (Peripheral Interrupt)
                             //  & INTEDG (External Interrupt Edge) to rising
     
     // Set Default Values
@@ -77,31 +76,20 @@ int main() {
     CLRWDT();               // Feed the dog once before we start
     while(1) {
         if (PORTAbits.RA2 == 1) {
-            if (cntHigh >= 2) {
-                // Max out cntHigh at 50
-                if (cntHigh >= 50) { cntHigh = 50; }
-                // Wait for an additional 9 minutes
-                for (uint16_t i=0;i<1080;i++){
-                    CLRWDT();               // Feed the Dog
-                    __delay_ms(500);        // Wait half a second
-                }
-                cntHigh--;
+            if (cntLow >= 1) {
+                cntLow--;
             } else {
-                if (cntLow >= 1) {
-                    cntLow--;
-                } else {
-                    LATAbits.LATA0 = 1;     // Enable Output
-                    SLEEP();                // Go to sleep
-                }
+                LATAbits.LATA0 = 1;     // Enable Output
+                SLEEP();                // Go to sleep
             }
         } else {
-            LATAbits.LATA0 = 0;             // Disable Output
+            LATAbits.LATA0 = 0;         // Disable Output
         }
         
         // Wait for 1 minute
         for (uint8_t i=0;i<120;i++){
-            CLRWDT();                       // Feed the Dog
-            __delay_ms(500);                // Wait half a second
+            CLRWDT();                   // Feed the Dog
+            __delay_ms(500);            // Wait half a second
         }
     }
     return (EXIT_SUCCESS);
@@ -114,7 +102,6 @@ void interrupts() {
     // External Interrupt detected
     if (INTF==1) {
         LATAbits.LATA0 = 0; // Disable Output
-        cntHigh++;
         cntLow = (cntLow + 5);
         INTF = 0;           // Clear the external interrupt flag
     }
