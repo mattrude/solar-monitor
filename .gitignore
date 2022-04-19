@@ -2,9 +2,4 @@ KiCAD/fp-info-cache
 KiCAD/Solar_Monitor-backups
 KiCAD/Solar_Monitor.kicad_prl
 KiCAD/sym-lib-table
-MPLAB.X/dist/
-MPLAB.X/build/
-MPLAB.X/nbproject/private/private.xml
-MPLAB.X/nbproject/Makefile-default.mk
-MPLAB.X/nbproject/Makefile-local-default.mk
-MPLAB.X/nbproject/private/configurations.xml
+SourceCode/.vs/AtmelStudio/v14/.atsuo
