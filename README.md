@@ -35,12 +35,12 @@ The `PIC16F15214-I/P` microcontroller reads the input from pin 2 on the `MCP102-
 
 ## Schematic
 
-![Schematic Rev-B](Documentation/Schematic_RevB.PNG)
+![Schematic Rev-C](Documentation/Schematic_RevC.PNG)
 
 ## Board
 
 **The Top of the Board**
-![Board Top Rev-A](Documentation/Board_Top_RevB.PNG)
+![Board Top Rev-C](Documentation/Board_Top_RevC.PNG)
 
 **The Bottom of the Board**
-![Board Bottom Rev-A](Documentation/Board_Bottom_RevB.PNG)
+![Board Bottom Rev-C](Documentation/Board_Bottom_RevC.PNG)
