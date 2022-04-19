@@ -53,7 +53,19 @@
 uint8_t poweredOn = 0;
 uint16_t cntLow = 1;
 
-void __interrupt() interrupts();
+
+// The Interrupt Subroutine
+void __interrupt() interrupts() {
+    
+    // External Interrupt detected
+    if (INTF==1) {
+        CLRWDT();           // Feed the Dog
+        LATAbits.LATA0 = 0; // Disable Output
+        cntLow = (cntLow + 5);  // Add five to the 'cntLow' variable
+        INTF = 0;           // Clear the external interrupt flag
+    }
+}
+
 
 int main() {
     // Setup Ports
@@ -75,8 +87,17 @@ int main() {
     
     CLRWDT();               // Feed the dog once before we start
     while(1) {
+        
+        // If: the RA2 pin is High (The MCP102 is in normal mode)
+        // - Then: Set RA0 to High (Enable output power to USB)
+        // - Else: Set RA0 to Low (Disable output power to USB)
         if (PORTAbits.RA2 == 1) {
+            
+            // Max the count out at 30 (ie. 30 minutes)
             if (cntLow > 30) { cntLow = 30; }
+            
+            // If the count is greater then zero, then reduce the value by one.
+            // - Else: enable the RA0 pin and go to sleep.
             if (cntLow >= 1) {
                 cntLow--;
             } else {
@@ -99,18 +120,5 @@ int main() {
             __delay_ms(250);            // Wait a quarter a second
             CLRWDT();                   // Feed the Dog
         }
-    }
-}
-
-
-// The Interrupt Subroutine
-void interrupts() {
-    
-    // External Interrupt detected
-    if (INTF==1) {
-        CLRWDT();                   // Feed the Dog
-        LATAbits.LATA0 = 0;         // Disable Output
-        cntLow = (cntLow + 5);
-        INTF = 0;                   // Clear the external interrupt flag
     }
 }
